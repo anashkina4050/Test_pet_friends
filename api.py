@@ -84,9 +84,7 @@ class PetFriends:
 #Тест 1
     def add_new_pet_simple(self, auth_key: json, name: str, animal_type: str,
                            age: str) -> json:
-        """Метод отправляет (постит) на сервер данные о добавляемом питомце без фотографии и возвращает статус
-        запроса на сервер и результат в формате JSON с данными добавленного питомца"""
-
+        
         data = MultipartEncoder(
             fields={
                 'name': name,
