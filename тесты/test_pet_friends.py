@@ -56,7 +56,7 @@ def test_successful_update_self_pet_info(name="Гера", animal_type="борз�
 
 
 # Тест 1 - без фото
-def test_add_new_pet_simple_with_valid_data_without_photo(name='ЯйценКлацКлац', animal_type='Собака'def test_add_new_pet_simple(name="Пацан", animal_type="кот", age=1):
+def test_add_new_pet_simple(name="Пацан", animal_type="кот", age=1):
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     status, result = pf.add_new_pet_simple(auth_key, name, animal_type, age)
     assert status == 200
