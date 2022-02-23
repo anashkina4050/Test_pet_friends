@@ -127,5 +127,12 @@ def test_add_photo_pet_without_data(name="", animal_type="", age="", pet_photo="
     assert status == 400
 
 
-# Тест 10 - слишком длинное имя
-def test_add_pet_with_long_name()
+# Тест 10 - обновление с неверным ID
+def test_update_pet_info_with_invalid_id(name='Рута', animal_type='дворняжка', age=0,5):
+    _, auth_key = pf.get_api_key(valid_email, valid_password)
+    _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
+    if len(my_pets['pets']) > 0:
+        status, result = pf.update_pet_info(auth_key, my_pets['pets'][100]['id'], name, animal_type, age)
+        assert status == 400
+    else:
+        raise Exception("Нет таких питомцев")                                                  
