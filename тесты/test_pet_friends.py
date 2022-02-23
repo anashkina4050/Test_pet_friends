@@ -19,7 +19,7 @@ def test_get_all_pets_with_valid_key(filter=""):
     assert len(result["pets"]) > 0
 
 
-def test_add_new_pet_with_valid_data(name="Рута", animal_type="дворняжка", age="0,5", pet_photo="images/Рута..JPG"):
+def test_add_new_pet_with_valid_data(name="Рута", animal_type="дворняжка", age="5", pet_photo="images/Рута..JPG"):
     pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     status, result = pf.add_new_pet(auth_key, name, animal_type, age, pet_photo)
@@ -32,7 +32,7 @@ def test_successful_delete_self_pet():
     _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
 
     if len(my_pets["pets"]) == 0:
-        pf.add_new_pet(auth_key, "Рута", "дворняжка", "0,5", "images/Рута..JPG")
+        pf.add_new_pet(auth_key, "Рута", "дворняжка", "5", "images/Рута..JPG")
         _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
 
     pet_id = my_pets["pets"][0]["id"]
@@ -98,7 +98,7 @@ def test_add_new_pet_with_invalid_name(name="2!5@1#?№$^%*", animal_type="ут�
 
 
 # Тест 6 - кривое фото
-def test_add_pet_with_invalid_photo(name="Рута", animal_type="дворняжка", age="0,5", pet_photo=""):
+def test_add_pet_with_invalid_photo(name="Рута", animal_type="дворняжка", age="5", pet_photo=""):
     pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     try:
@@ -128,7 +128,7 @@ def test_add_photo_pet_without_data(name="", animal_type="", age="", pet_photo="
 
 
 # Тест 10 - обновление с неверным ID
-def test_update_pet_info_with_invalid_id(name='Рута', animal_type='дворняжка', age=0,5):
+def test_update_pet_info_with_invalid_id(name='Рута', animal_type='дворняжка', age=5):
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
     if len(my_pets['pets']) > 0:
