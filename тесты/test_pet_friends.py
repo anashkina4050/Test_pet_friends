@@ -56,20 +56,12 @@ def test_successful_update_self_pet_info(name="Гера", animal_type="борз�
 
 
 # Тест 1 - без фото
-def test_add_new_pet_simple_with_valid_data_without_photo(name='ЯйценКлацКлац', animal_type='Собака',
-                                                          age='4'):
-    """Проверяем возможность добавления нового питомца с корректными данными, но без фото"""
-
-    # Запрашиваем ключ api и сохраняем в переменную auth_key
+def test_add_new_pet_simple_with_valid_data_without_photo(name='ЯйценКлацКлац', animal_type='Собака'def test_add_new_pet_simple(name="Пацан", animal_type="кот", age=1):
     _, auth_key = pf.get_api_key(valid_email, valid_password)
-
-    # Добавляем питомца без фото
     status, result = pf.add_new_pet_simple(auth_key, name, animal_type, age)
-
-    # Сверяем полученный ответ с ожидаемым результатом
     assert status == 200
-    assert result['name'] == name
-    assert result['pet_photo'] == ''
+    assert result["name"] == name
+    assert result["pet_photo"] == ""
 
 
 # Тест 2 - добавить фото
